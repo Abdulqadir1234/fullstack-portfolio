@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormMail;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ContactController extends Controller
 {
@@ -16,7 +19,13 @@ class ContactController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        Contact::create($validated);
+        $contact = Contact::create($validated);
+
+        try {
+            Mail::to('abdulqadirnasrat483@gmail.com')->send(new ContactFormMail($contact));
+        } catch (\Exception $e) {
+            Log::error('Failed to send contact email: ' . $e->getMessage());
+        }
 
         return redirect()->back()->with('success', 'Thank you for your message! I will get back to you soon.');
     }
