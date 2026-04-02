@@ -9,6 +9,20 @@ export default function Hero() {
             </div>
 
             <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                {/* Profile Photo */}
+                <div className="mb-8 flex justify-center">
+                    <div className="relative">
+                        <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-primary-500/30 shadow-xl shadow-primary-500/20">
+                            <img
+                                src="/images/qadir.jpg"
+                                alt="Abdul Qadir"
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 w-36 h-36 md:w-44 md:h-44 rounded-full border-2 border-primary-500/10 -z-10"></div>
+                    </div>
+                </div>
+
                 <p className="text-primary-400 text-lg md:text-xl font-medium mb-4 tracking-wide">
                     Hello, I'm
                 </p>

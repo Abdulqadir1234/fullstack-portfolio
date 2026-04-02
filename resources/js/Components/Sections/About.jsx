@@ -13,8 +13,12 @@ export default function About() {
                     {/* Photo placeholder */}
                     <div className="flex justify-center">
                         <div className="relative">
-                            <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-primary-600/30 to-purple-600/30 border border-slate-700 flex items-center justify-center overflow-hidden">
-                                <div className="text-8xl font-bold text-primary-500/40">AQ</div>
+                            <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl bg-gradient-to-br from-primary-600/30 to-purple-600/30 border border-slate-700 overflow-hidden">
+                                <img
+                                    src="/images/qadir.jpg"
+                                    alt="Abdul Qadir"
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                             <div className="absolute -bottom-4 -right-4 w-64 h-64 md:w-80 md:h-80 rounded-2xl border-2 border-primary-500/20 -z-10"></div>
                         </div>
