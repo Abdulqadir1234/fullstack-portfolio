@@ -1,11 +1,21 @@
 export default function ProjectCard({ project }) {
     return (
         <div className="group relative bg-slate-800/50 rounded-2xl border border-slate-700/50 overflow-hidden hover:border-primary-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/10">
-            {/* Project Image Placeholder */}
-            <div className="h-48 bg-gradient-to-br from-primary-600/20 to-purple-600/20 flex items-center justify-center">
-                <div className="text-5xl font-bold text-primary-500/30 group-hover:text-primary-400/50 transition-colors duration-500">
-                    {project.title.charAt(0)}
-                </div>
+            {/* Project Image */}
+            <div className="h-48 overflow-hidden bg-gradient-to-br from-primary-600/20 to-purple-600/20">
+                {project.image ? (
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <div className="text-5xl font-bold text-primary-500/30 group-hover:text-primary-400/50 transition-colors duration-500">
+                            {project.title.charAt(0)}
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Content */}
@@ -19,7 +29,7 @@ export default function ProjectCard({ project }) {
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech_stack.map((tech, index) => (
+                    {project.technologies.map((tech, index) => (
                         <span
                             key={index}
                             className="text-xs px-2.5 py-1 rounded-full bg-primary-500/10 text-primary-400 border border-primary-500/20"
@@ -31,9 +41,9 @@ export default function ProjectCard({ project }) {
 
                 {/* Links */}
                 <div className="flex gap-3 pt-2 border-t border-slate-700/50">
-                    {project.project_url && project.project_url !== '#' && (
+                    {project.live_url && project.live_url !== '#' && (
                         <a
-                            href={project.project_url}
+                            href={project.live_url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-primary-400 transition-colors"

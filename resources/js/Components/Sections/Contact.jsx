@@ -1,21 +1,57 @@
-import { useForm, usePage } from '@inertiajs/react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import SectionHeading from '../UI/SectionHeading';
 
 export default function Contact() {
-    const { flash } = usePage().props;
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const formRef = useRef();
+    const [formData, setFormData] = useState({
         name: '',
         email: '',
         subject: '',
         message: '',
     });
+    const [status, setStatus] = useState({ submitting: false, success: false, error: null });
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        post('/contact', {
-            onSuccess: () => reset(),
+    const handleChange = (e) => {
+        const fieldName = e.target.name === 'from_name' ? 'name' : 
+                         e.target.name === 'from_email' ? 'email' : 
+                         e.target.name;
+        setFormData({
+            ...formData,
+            [fieldName]: e.target.value,
         });
-    }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus({ submitting: true, success: false, error: null });
+
+        try {
+            // EmailJS configuration
+            const serviceID = 'service_swd2vrg';
+            const templateID = 'template_ac091me';
+            const publicKey = 'GB0LPvZOI2Yi_UY3L';
+
+            const result = await emailjs.sendForm(
+                serviceID,
+                templateID,
+                formRef.current,
+                publicKey
+            );
+
+            if (result.status === 200) {
+                setStatus({ submitting: false, success: true, error: null });
+                setFormData({ name: '', email: '', subject: '', message: '' });
+            }
+        } catch (error) {
+            setStatus({ 
+                submitting: false, 
+                success: false, 
+                error: 'Failed to send message. Please try again or email me directly.' 
+            });
+            console.error('EmailJS Error:', error);
+        }
+    };
 
     return (
         <section id="contact" className="py-24 px-4">
@@ -25,9 +61,14 @@ export default function Contact() {
                     subtitle="Have a question or want to work together? Drop me a message!"
                 />
 
-                {flash?.success && (
+                {status.success && (
                     <div className="mb-8 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-center">
-                        {flash.success}
+                        Thank you! Your message has been sent successfully.
+                    </div>
+                )}
+                {status.error && (
+                    <div className="mb-8 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-center">
+                        {status.error}
                     </div>
                 )}
 
@@ -79,59 +120,63 @@ export default function Contact() {
                     </div>
 
                     {/* Contact Form */}
-                    <form onSubmit={handleSubmit} className="md:col-span-3 space-y-5">
+                    <form ref={formRef} onSubmit={handleSubmit} className="md:col-span-3 space-y-5">
                         <div className="grid sm:grid-cols-2 gap-5">
                             <div>
                                 <label className="block text-sm font-medium text-slate-400 mb-1.5">Name</label>
                                 <input
                                     type="text"
-                                    value={data.name}
-                                    onChange={(e) => setData('name', e.target.value)}
+                                    name="from_name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors"
                                     placeholder="Your name"
                                 />
-                                {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-slate-400 mb-1.5">Email</label>
                                 <input
                                     type="email"
-                                    value={data.email}
-                                    onChange={(e) => setData('email', e.target.value)}
+                                    name="from_email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors"
                                     placeholder="your@email.com"
                                 />
-                                {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
                             </div>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-slate-400 mb-1.5">Subject</label>
                             <input
                                 type="text"
-                                value={data.subject}
-                                onChange={(e) => setData('subject', e.target.value)}
+                                name="subject"
+                                value={formData.subject}
+                                onChange={handleChange}
+                                required
                                 className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors"
                                 placeholder="What's this about?"
                             />
-                            {errors.subject && <p className="text-red-400 text-sm mt-1">{errors.subject}</p>}
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-slate-400 mb-1.5">Message</label>
                             <textarea
-                                value={data.message}
-                                onChange={(e) => setData('message', e.target.value)}
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
                                 rows={5}
+                                required
                                 className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors resize-none"
                                 placeholder="Your message..."
                             />
-                            {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                         </div>
                         <button
                             type="submit"
-                            disabled={processing}
+                            disabled={status.submitting}
                             className="w-full px-8 py-3.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-600/25 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {processing ? 'Sending...' : 'Send Message'}
+                            {status.submitting ? 'Sending...' : 'Send Message'}
                         </button>
                     </form>
                 </div>

@@ -11,7 +11,7 @@ export default function Footer() {
                     <div className="flex items-center gap-1 text-slate-500 text-sm">
                         Built with
                         <span className="text-red-400 mx-1">&hearts;</span>
-                        using Laravel &amp; React
+                        using React &amp; Tailwind CSS
                     </div>
                     <div className="flex items-center gap-4">
                         <a href="https://github.com/Abdulqadir1234" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-primary-400 transition-colors">

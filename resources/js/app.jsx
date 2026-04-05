@@ -1,13 +1,13 @@
-import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
+import Home from './Pages/Home';
+import '../css/app.css';
 
-createInertiaApp({
-    title: (title) => title ? `${title} - Portfolio` : 'Portfolio',
-    resolve: (name) => {
-        const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true });
-        return pages[`./Pages/${name}.jsx`];
-    },
-    setup({ el, App, props }) {
-        createRoot(el).render(<App {...props} />);
-    },
-});
+const container = document.getElementById('app');
+const root = createRoot(container);
+
+root.render(
+    <HelmetProvider>
+        <Home />
+    </HelmetProvider>
+);

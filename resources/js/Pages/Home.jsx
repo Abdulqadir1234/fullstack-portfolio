@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../Components/Layout/Navbar';
 import Footer from '../Components/Layout/Footer';
 import Hero from '../Components/Sections/Hero';
@@ -6,11 +6,14 @@ import About from '../Components/Sections/About';
 import Skills from '../Components/Sections/Skills';
 import Projects from '../Components/Sections/Projects';
 import Contact from '../Components/Sections/Contact';
+import { projects, skills } from '../data/portfolioData';
 
-export default function Home({ projects, skills }) {
+export default function Home() {
     return (
         <>
-            <Head title="Abdul Qadir - Full Stack Developer" />
+            <Helmet>
+                <title>Abdul Qadir - Full Stack Developer</title>
+            </Helmet>
             <Navbar />
             <main>
                 <Hero />
