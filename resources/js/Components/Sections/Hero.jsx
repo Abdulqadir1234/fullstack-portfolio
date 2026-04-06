@@ -41,7 +41,7 @@ export default function Hero() {
                             Hi, I'm{' '}
                             <span className="relative">
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-purple-400 to-pink-400">
-                                    Abdul Qadir
+                                    Abdul Qadir Nasrat
                                 </span>
                                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none">
                                     <path d="M1 5.5C47 2 153 2 199 5.5" stroke="url(#underline-gradient)" strokeWidth="3" strokeLinecap="round" />
