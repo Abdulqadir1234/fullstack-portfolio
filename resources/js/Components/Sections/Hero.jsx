@@ -8,7 +8,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+        <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 lg:pt-0 overflow-hidden">
             {/* Animated background */}
             <div className="absolute inset-0 bg-slate-950">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/20 via-slate-950 to-slate-950"></div>
@@ -23,13 +23,13 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 items-center">
 
                     {/* Left: Text content */}
                     <div className={`order-2 lg:order-1 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                         {/* Status badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-500/10 border border-primary-500/20 mb-8">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-500/10 border border-primary-500/20 mb-6 md:mb-8">
                             <span className="relative flex h-2.5 w-2.5">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400"></span>
@@ -37,7 +37,7 @@ export default function Hero() {
                             <span className="text-sm text-primary-300 font-medium">Available for work</span>
                         </div>
 
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] mb-6">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] mb-4 md:mb-6">
                             Hi, I'm{' '}
                             <span className="relative">
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-purple-400 to-pink-400">
@@ -59,13 +59,13 @@ export default function Hero() {
                             </span>
                         </h1>
 
-                        <p className="text-slate-400 text-base sm:text-lg max-w-lg mb-10 leading-relaxed">
+                        <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-lg mb-8 md:mb-10 leading-relaxed">
                             I craft modern, high-performance web applications with clean architecture
                             and pixel-perfect design. Turning complex ideas into elegant digital experiences.
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 md:mb-12">
                             <a
                                 href="#projects"
                                 className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/25 hover:-translate-y-0.5"
@@ -101,7 +101,7 @@ export default function Hero() {
 
                     {/* Right: Profile photo */}
                     <div className={`order-1 lg:order-2 flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                        <div className="relative">
+                        <div className="relative mt-4 md:mt-0">
                             {/* Glow behind photo */}
                             <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-2xl opacity-60"></div>
 
@@ -114,7 +114,7 @@ export default function Hero() {
                             </div>
 
                             {/* Photo container */}
-                            <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
+                            <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
                                 <img
                                     src="/images/qadir.jpg"
                                     alt="Abdul Qadir"
@@ -125,16 +125,16 @@ export default function Hero() {
                             </div>
 
                             {/* Floating cards */}
-                            <div className="absolute -right-4 top-8 px-3 py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-lg shadow-xl animate-[bounce_3s_ease-in-out_infinite]">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-lg">&#9889;</span>
-                                    <span className="text-xs font-semibold text-white">Full Stack</span>
+                            <div className="absolute -right-2 top-6 md:-right-4 md:top-8 px-2 py-1.5 md:px-3 md:py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-lg shadow-xl animate-[bounce_3s_ease-in-out_infinite]">
+                                <div className="flex items-center gap-1.5 md:gap-2">
+                                    <span className="text-base md:text-lg">&#9889;</span>
+                                    <span className="text-[10px] md:text-xs font-semibold text-white">Full Stack</span>
                                 </div>
                             </div>
-                            <div className="absolute -left-6 bottom-12 px-3 py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-lg shadow-xl animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-lg">&#128187;</span>
-                                    <span className="text-xs font-semibold text-white">Clean Code</span>
+                            <div className="absolute -left-4 bottom-8 md:-left-6 md:bottom-12 px-2 py-1.5 md:px-3 md:py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-lg shadow-xl animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
+                                <div className="flex items-center gap-1.5 md:gap-2">
+                                    <span className="text-base md:text-lg">&#128187;</span>
+                                    <span className="text-[10px] md:text-xs font-semibold text-white">Clean Code</span>
                                 </div>
                             </div>
                         </div>
