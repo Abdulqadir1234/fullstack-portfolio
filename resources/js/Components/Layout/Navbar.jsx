@@ -68,15 +68,30 @@ export default function Navbar() {
         { name: 'Contact', href: '#contact' },
     ];
 
+    const handleResumeClick = () => {
+        setIsMobileOpen(false);
+        window.location.href = '/resume';
+    };
+
     const handleNavClick = (href) => {
         setIsMobileOpen(false);
-        const element = document.querySelector(href);
-        if (element) {
-            const offsetTop = element.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+        
+        // Check if we're on the resume page
+        const isResumePage = window.location.pathname === '/resume';
+        
+        if (isResumePage) {
+            // Navigate to home page with hash
+            window.location.href = '/' + href;
+        } else {
+            // Normal scroll behavior on home page
+            const element = document.querySelector(href);
+            if (element) {
+                const offsetTop = element.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         }
     };
 
@@ -150,6 +165,17 @@ export default function Navbar() {
                                 </a>
                             );
                         })}
+                        
+                        {/* Resume Button */}
+                        <button
+                            onClick={handleResumeClick}
+                            className="group relative ml-2 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25 hover:scale-105 active:scale-95 flex items-center gap-2"
+                        >
+                            <svg className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>Resume</span>
+                        </button>
                     </div>
 
                     {/* Mobile menu button */}
@@ -254,6 +280,24 @@ export default function Navbar() {
                                 </a>
                             );
                         })}
+                        
+                        {/* Resume Button in Mobile Menu */}
+                        <button
+                            onClick={handleResumeClick}
+                            className="relative flex items-center gap-4 w-full px-5 py-4 rounded-xl
+                                text-white bg-gradient-to-r from-primary-600 to-primary-500 
+                                border-2 border-primary-500/50 shadow-lg shadow-primary-500/20
+                                transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                            style={{
+                                animation: isMobileOpen ? `mobileNavSlide 0.4s ease-out ${navLinks.length * 0.08}s both` : 'none'
+                            }}
+                        >
+                            <span className="text-xl flex-shrink-0">📄</span>
+                            <span className="relative z-10 text-base font-semibold">View Resume</span>
+                            <svg className="w-5 h-5 ml-auto text-white/80 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
                     </div>
                     
                     {/* Footer with Social Links */}
