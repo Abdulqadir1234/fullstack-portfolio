@@ -1,5 +1,5 @@
 import SectionHeading from '../UI/SectionHeading';
-import ProjectCard from '../UI/ProjectCard';
+import ProjectSlider from '../UI/ProjectSlider';
 import { useTheme } from '../Layout/ThemeProvider';
 
 export default function Projects({ projects }) {
@@ -13,11 +13,7 @@ export default function Projects({ projects }) {
                     subtitle="Here are some of the projects I've worked on recently"
                 />
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {projects.map((project) => (
-                        <ProjectCard key={project.id} project={project} />
-                    ))}
-                </div>
+                <ProjectSlider projects={projects} />
             </div>
         </section>
     );
