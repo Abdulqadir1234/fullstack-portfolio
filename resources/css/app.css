@@ -7,3 +7,29 @@
 html {
     scroll-behavior: smooth;
 }
+
+/* Default dark mode */
+body {
+    @apply bg-slate-950 text-white;
+}
+
+/* Light mode */
+html:not(.dark) body {
+    @apply bg-white text-slate-900;
+}
+
+/* Light mode variables */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+}
+
+/* Dark mode variables */
+.dark {
+    --bg-primary: #020617;
+    --bg-secondary: #0f172a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+}
