@@ -86,14 +86,17 @@ export default function Navbar() {
             window.location.href = '/' + href;
         } else {
             // Normal scroll behavior on home page
-            const element = document.querySelector(href);
-            if (element) {
-                const offsetTop = element.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
+            // Wait for mobile menu to close before scrolling
+            setTimeout(() => {
+                const element = document.querySelector(href);
+                if (element) {
+                    const offsetTop = element.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
         }
     };
 
