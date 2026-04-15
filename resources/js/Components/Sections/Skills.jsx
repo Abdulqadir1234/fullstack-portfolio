@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import SectionHeading from '../UI/SectionHeading';
 import SkillBadge from '../UI/SkillBadge';
+import { useTheme } from '../Layout/ThemeProvider';
 
 export default function Skills({ skills }) {
+    const { theme } = useTheme();
     const [isVisible, setIsVisible] = useState(false);
     const [animatedCards, setAnimatedCards] = useState([]);
     const sectionRef = useRef(null);
@@ -39,6 +41,10 @@ export default function Skills({ skills }) {
         <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
         </svg>,
+        // Graphic Design
+        <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        </svg>,
         // Tools
         <svg className="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -49,12 +55,14 @@ export default function Skills({ skills }) {
     const categoryGradients = [
         'from-blue-500/20 to-cyan-500/20',
         'from-purple-500/20 to-pink-500/20',
+        'from-orange-500/20 to-red-500/20',
         'from-green-500/20 to-emerald-500/20',
     ];
 
     const categoryBorders = [
         'hover:border-blue-500/50',
         'hover:border-purple-500/50',
+        'hover:border-orange-500/50',
         'hover:border-green-500/50',
     ];
 
@@ -74,9 +82,9 @@ export default function Skills({ skills }) {
                     {skills.map((group, index) => (
                         <div
                             key={index}
-                            className={`skill-card group relative p-5 md:p-6 rounded-2xl bg-slate-800/30 border border-slate-700/50 ${categoryBorders[index]} backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:-translate-y-1 ${
+                            className={`skill-card group relative p-5 md:p-6 rounded-2xl ${theme === 'dark' ? 'bg-slate-800/30 border-slate-700/50' : 'bg-white/50 border-slate-200/50'} ${categoryBorders[index]} backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:-translate-y-1 ${
                                 animatedCards.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                            }`}
+                            } border`}
                         >
                             {/* Hover gradient background */}
                             <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${categoryGradients[index]} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -87,7 +95,7 @@ export default function Skills({ skills }) {
                                     <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${categoryGradients[index]} flex items-center justify-center transform group-hover:rotate-6 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
                                         {categoryIcons[index]}
                                     </div>
-                                    <h3 className="text-base md:text-lg font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-300 transition-all duration-300">
+                                    <h3 className={`text-base md:text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-slate-900'} group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-300 transition-all duration-300`}>
                                         {group.category}
                                     </h3>
                                 </div>

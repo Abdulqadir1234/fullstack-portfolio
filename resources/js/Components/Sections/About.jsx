@@ -1,8 +1,11 @@
 import SectionHeading from '../UI/SectionHeading';
+import { useTheme } from '../Layout/ThemeProvider';
 
 export default function About() {
+    const { theme } = useTheme();
+    
     return (
-        <section id="about" className="py-24 px-4 bg-slate-900/50">
+        <section id="about" className={`py-24 px-4 ${theme === 'dark' ? 'bg-slate-900/50' : 'bg-slate-100/50'}`}>
             <div className="max-w-6xl mx-auto">
                 <SectionHeading
                     title="About Me"
@@ -26,16 +29,16 @@ export default function About() {
 
                     {/* Bio */}
                     <div>
-                        <h3 className="text-2xl font-bold text-white mb-4">
+                        <h3 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'} mb-4`}>
                             A passionate developer based in the world of code
                         </h3>
-                        <p className="text-slate-400 leading-relaxed mb-6">
+                        <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} leading-relaxed mb-6`}>
                             I'm a Full Stack Developer who loves building web applications that are
                             both functional and beautiful. With experience across the entire development
                             stack, I enjoy tackling complex problems and turning them into simple,
                             elegant solutions.
                         </p>
-                        <p className="text-slate-400 leading-relaxed mb-8">
+                        <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} leading-relaxed mb-8`}>
                             When I'm not coding, you can find me exploring new technologies,
                             contributing to open source projects, or learning something new.
                             I believe in continuous improvement and writing clean, maintainable code.
@@ -43,17 +46,17 @@ export default function About() {
 
                         {/* Stats */}
                         <div className="grid grid-cols-3 gap-4">
-                            <div className="text-center p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <div className={`text-center p-4 rounded-xl ${theme === 'dark' ? 'bg-slate-800/50 border-slate-700/50' : 'bg-white/80 border-slate-200/50'} border`}>
                                 <div className="text-2xl md:text-3xl font-bold text-primary-400">10+</div>
-                                <div className="text-slate-500 text-sm mt-1">Projects</div>
+                                <div className={`${theme === 'dark' ? 'text-slate-500' : 'text-slate-600'} text-sm mt-1`}>Projects</div>
                             </div>
-                            <div className="text-center p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <div className={`text-center p-4 rounded-xl ${theme === 'dark' ? 'bg-slate-800/50 border-slate-700/50' : 'bg-white/80 border-slate-200/50'} border`}>
                                 <div className="text-2xl md:text-3xl font-bold text-primary-400">5+</div>
-                                <div className="text-slate-500 text-sm mt-1">Technologies</div>
+                                <div className={`${theme === 'dark' ? 'text-slate-500' : 'text-slate-600'} text-sm mt-1`}>Technologies</div>
                             </div>
-                            <div className="text-center p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <div className={`text-center p-4 rounded-xl ${theme === 'dark' ? 'bg-slate-800/50 border-slate-700/50' : 'bg-white/80 border-slate-200/50'} border`}>
                                 <div className="text-2xl md:text-3xl font-bold text-primary-400">100%</div>
-                                <div className="text-slate-500 text-sm mt-1">Dedication</div>
+                                <div className={`${theme === 'dark' ? 'text-slate-500' : 'text-slate-600'} text-sm mt-1`}>Dedication</div>
                             </div>
                         </div>
                     </div>

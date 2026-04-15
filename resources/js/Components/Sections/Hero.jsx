@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '../Layout/ThemeProvider';
 
 export default function Hero() {
+    const { theme } = useTheme();
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -10,17 +12,17 @@ export default function Hero() {
     return (
         <section id="home" className="relative min-h-screen flex items-center pt-20 md:pt-24 lg:pt-0 overflow-hidden">
             {/* Animated background */}
-            <div className="absolute inset-0 bg-slate-950">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/20 via-slate-950 to-slate-950"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/15 via-transparent to-transparent"></div>
+            <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-slate-950' : 'bg-slate-50'}`}>
+                <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-900/20 via-slate-950 to-slate-950' : 'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary-200/30 via-slate-50 to-slate-50'}`}></div>
+                <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/15 via-transparent to-transparent' : 'bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-200/20 via-transparent to-transparent'}`}></div>
 
                 {/* Floating orbs */}
-                <div className="absolute top-20 left-[10%] w-72 h-72 bg-primary-500/8 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-[5%] w-96 h-96 bg-purple-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-                <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+                <div className={`absolute top-20 left-[10%] w-72 h-72 ${theme === 'dark' ? 'bg-primary-500/8' : 'bg-primary-300/20'} rounded-full blur-3xl animate-pulse`}></div>
+                <div className={`absolute bottom-20 right-[5%] w-96 h-96 ${theme === 'dark' ? 'bg-purple-500/8' : 'bg-purple-300/20'} rounded-full blur-3xl animate-pulse`} style={{ animationDelay: '2s' }}></div>
+                <div className={`absolute top-1/2 left-1/2 w-64 h-64 ${theme === 'dark' ? 'bg-indigo-500/5' : 'bg-indigo-300/15'} rounded-full blur-3xl animate-pulse`} style={{ animationDelay: '4s' }}></div>
 
                 {/* Grid pattern overlay */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+                <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)]' : 'bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)]'} bg-[size:64px_64px]`}></div>
             </div>
 
             <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-8 md:py-12">
@@ -34,7 +36,7 @@ export default function Hero() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400"></span>
                             </span>
-                            <span className="text-sm text-primary-300 font-medium">Available for work</span>
+                            <span className={`text-sm font-medium ${theme === 'dark' ? 'text-primary-300' : 'text-primary-700'}`}>Available for work</span>
                         </div>
 
                         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] mb-4 md:mb-6">
@@ -54,12 +56,12 @@ export default function Hero() {
                                     </defs>
                                 </svg>
                             </span>
-                            <span className="block mt-2 text-slate-300 text-3xl sm:text-4xl lg:text-5xl font-bold">
+                            <span className={`block mt-2 ${theme === 'dark' ? 'text-slate-300' : 'text-slate-700'} text-3xl sm:text-4xl lg:text-5xl font-bold`}>
                                 Full Stack Developer
                             </span>
                         </h1>
 
-                        <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-lg mb-8 md:mb-10 leading-relaxed">
+                        <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-sm sm:text-base md:text-lg max-w-lg mb-8 md:mb-10 leading-relaxed`}>
                             I craft modern, high-performance web applications with clean architecture
                             and pixel-perfect design. Turning complex ideas into elegant digital experiences.
                         </p>
@@ -77,7 +79,7 @@ export default function Hero() {
                             </a>
                             <a
                                 href="#contact"
-                                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/5 hover:bg-white/10 border border-slate-700 hover:border-primary-500/50 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm"
+                                className={`group inline-flex items-center justify-center gap-2 px-7 py-3.5 ${theme === 'dark' ? 'bg-white/5 hover:bg-white/10 border-slate-700 hover:border-primary-500/50 text-slate-300 hover:text-white' : 'bg-slate-200/50 hover:bg-slate-300/50 border-slate-300 hover:border-primary-500/50 text-slate-700 hover:text-primary-700'} border font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm`}
                             >
                                 Let's Talk
                                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,7 +93,7 @@ export default function Hero() {
                             {['Laravel', 'React', 'JavaScript', 'PHP', 'Tailwind'].map((tech) => (
                                 <span
                                     key={tech}
-                                    className="px-3 py-1 text-xs font-medium rounded-md bg-slate-800/80 text-slate-400 border border-slate-700/50"
+                                    className={`px-3 py-1 text-xs font-medium rounded-md ${theme === 'dark' ? 'bg-slate-800/80 text-slate-400 border-slate-700/50' : 'bg-slate-200/80 text-slate-600 border-slate-300/50'} border`}
                                 >
                                     {tech}
                                 </span>
@@ -102,39 +104,40 @@ export default function Hero() {
                     {/* Right: Profile photo */}
                     <div className={`order-1 lg:order-2 flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                         <div className="relative mt-4 md:mt-0">
-                            {/* Glow behind photo */}
-                            <div className="absolute -inset-4 bg-gradient-to-r from-primary-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-2xl opacity-60"></div>
+                            {/* Blue flood/glow effect behind person */}
+                            <div className="absolute -inset-8 bg-gradient-to-b from-blue-600/40 via-blue-500/30 to-cyan-500/20 blur-3xl opacity-70"></div>
+                            <div className="absolute -inset-4 bg-gradient-to-t from-blue-500/30 via-indigo-500/20 to-transparent blur-2xl opacity-60"></div>
+                            
+                            {/* Side lighting effects */}
+                            <div className="absolute -left-12 top-1/4 w-24 h-48 bg-blue-500/25 blur-2xl"></div>
+                            <div className="absolute -right-12 top-1/3 w-24 h-48 bg-cyan-500/20 blur-2xl"></div>
 
-                            {/* Decorative ring */}
-                            <div className="absolute -inset-3 rounded-full border border-primary-500/10 animate-[spin_25s_linear_infinite]">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary-400 shadow-lg shadow-primary-400/50"></div>
-                            </div>
-                            <div className="absolute -inset-6 rounded-full border border-purple-500/5 animate-[spin_35s_linear_infinite_reverse]">
-                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
-                            </div>
-
-                            {/* Photo container */}
-                            <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl">
+                            {/* Photo - no container */}
+                            <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem]">
                                 <img
-                                    src="/images/qadir.jpg"
+                                    src="/images/qadir.png"
                                     alt="Abdul Qadir"
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-auto object-cover"
                                 />
-                                {/* Subtle overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent"></div>
                             </div>
 
                             {/* Floating cards */}
-                            <div className="absolute -right-2 top-6 md:-right-4 md:top-8 px-2 py-1.5 md:px-3 md:py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-lg shadow-xl animate-[bounce_3s_ease-in-out_infinite]">
-                                <div className="flex items-center gap-1.5 md:gap-2">
-                                    <span className="text-base md:text-lg">&#9889;</span>
-                                    <span className="text-[10px] md:text-xs font-semibold text-white">Full Stack</span>
+                            <div className="absolute right-0 top-16 md:right-4 md:top-20 px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl animate-[bounce_3s_ease-in-out_infinite]">
+                                <div className="flex items-center gap-2.5">
+                                    <span className="text-xl">&#9889;</span>
+                                    <div>
+                                        <div className="text-xs font-semibold text-white">Full Stack</div>
+                                        <div className="text-[10px] text-slate-300">Developer</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="absolute -left-4 bottom-8 md:-left-6 md:bottom-12 px-2 py-1.5 md:px-3 md:py-2 bg-slate-800/90 backdrop-blur-sm border border-slate-700/50 rounded-lg shadow-xl animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
-                                <div className="flex items-center gap-1.5 md:gap-2">
-                                    <span className="text-base md:text-lg">&#128187;</span>
-                                    <span className="text-[10px] md:text-xs font-semibold text-white">Clean Code</span>
+                            <div className="absolute left-0 bottom-24 md:-left-4 md:bottom-28 px-4 py-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl animate-[bounce_3s_ease-in-out_infinite]" style={{ animationDelay: '1.5s' }}>
+                                <div className="flex items-center gap-2.5">
+                                    <span className="text-xl">&#128187;</span>
+                                    <div>
+                                        <div className="text-xs font-semibold text-white">Clean</div>
+                                        <div className="text-[10px] text-slate-300">Code</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +147,7 @@ export default function Hero() {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-                <a href="#about" className="flex flex-col items-center gap-2 text-slate-500 hover:text-primary-400 transition-colors group">
+                <a href="#about" className={`flex flex-col items-center gap-2 ${theme === 'dark' ? 'text-slate-500 hover:text-primary-400' : 'text-slate-400 hover:text-primary-600'} transition-colors group`}>
                     <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
                     <div className="w-5 h-8 rounded-full border-2 border-current flex items-start justify-center p-1">
                         <div className="w-1 h-2 bg-current rounded-full animate-bounce"></div>

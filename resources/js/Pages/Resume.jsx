@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Navbar from '../Components/Layout/Navbar';
 import Footer from '../Components/Layout/Footer';
+import { useTheme } from '../Components/Layout/ThemeProvider';
 
 export default function Resume() {
+    const { theme } = useTheme();
     const [isDownloading, setIsDownloading] = useState(false);
 
     const handleDownload = async () => {
@@ -40,13 +42,15 @@ export default function Resume() {
     };
 
     const handleView = () => {
-        window.open('/resume.pdf', '_blank');
+        // Open PDF in new tab with full URL
+        const pdfUrl = window.location.origin + '/resume.pdf';
+        window.open(pdfUrl, '_blank');
     };
 
     return (
         <>
             <Navbar />
-            <div className="min-h-screen bg-slate-950 pt-24 md:pt-28 pb-12 px-4 sm:px-6">
+            <div className={`min-h-screen ${theme === 'dark' ? 'bg-slate-950' : 'bg-slate-50'} pt-24 md:pt-28 pb-12 px-4 sm:px-6`}>
                 <div className="max-w-4xl mx-auto">
                     {/* Header Section */}
                     <div className="text-center mb-8 md:mb-12 animate-fadeIn">
@@ -58,7 +62,7 @@ export default function Resume() {
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                             My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-purple-400">Resume</span>
                         </h1>
-                        <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+                        <p className={`${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'} text-base md:text-lg max-w-2xl mx-auto`}>
                             View my professional experience, skills, and qualifications
                         </p>
                     </div>
@@ -68,7 +72,7 @@ export default function Resume() {
                         {/* View Resume Button */}
                         <button
                             onClick={handleView}
-                            className="group inline-flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 border-2 border-slate-700 hover:border-primary-500/50 text-slate-300 hover:text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 backdrop-blur-sm"
+                            className={`group inline-flex items-center justify-center gap-3 px-6 py-3 md:px-8 md:py-4 ${theme === 'dark' ? 'bg-white/5 hover:bg-white/10 border-slate-700 hover:border-primary-500/50 text-slate-300 hover:text-white' : 'bg-slate-200/50 hover:bg-slate-300/50 border-slate-300 hover:border-primary-500/50 text-slate-700 hover:text-primary-700'} border-2 font-semibold rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 backdrop-blur-sm`}
                         >
                             <svg className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -114,11 +118,11 @@ export default function Resume() {
                         ].map((stat, index) => (
                             <div
                                 key={index}
-                                className="p-4 md:p-6 bg-slate-800/30 border border-slate-700/50 rounded-xl text-center hover:border-primary-500/30 transition-all duration-300"
+                                className={`p-4 md:p-6 ${theme === 'dark' ? 'bg-slate-800/30 border-slate-700/50' : 'bg-white/80 border-slate-200/50'} border rounded-xl text-center hover:border-primary-500/30 transition-all duration-300`}
                             >
                                 <div className="text-2xl md:text-3xl mb-2">{stat.icon}</div>
-                                <div className="text-xl md:text-2xl font-bold text-white mb-1">{stat.value}</div>
-                                <div className="text-xs md:text-sm text-slate-400">{stat.label}</div>
+                                <div className={`text-xl md:text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'} mb-1`}>{stat.value}</div>
+                                <div className={`text-xs md:text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>{stat.label}</div>
                             </div>
                         ))}
                     </div>
