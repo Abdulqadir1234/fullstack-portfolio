@@ -230,8 +230,20 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Theme Toggle for Mobile - Shown before mobile menu */}
-            <div className="lg:hidden absolute right-16 top-1/2 -translate-y-1/2">
+            {/* Mobile Controls - Theme Toggle & Resume Button */}
+            <div className="lg:hidden absolute right-16 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                {/* Resume Button */}
+                <button
+                    onClick={handleResumeClick}
+                    className="group relative px-2.5 py-2 text-xs font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25 active:scale-95 flex items-center gap-1.5"
+                >
+                    <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span className="hidden sm:inline">Resume</span>
+                </button>
+
+                {/* Theme Toggle */}
                 <button
                     onClick={toggleTheme}
                     className={`relative w-10 h-10 rounded-xl ${theme === 'dark' ? 'bg-slate-800/50 border-slate-700/50 text-slate-300 hover:text-yellow-400 hover:border-primary-500/50 hover:bg-slate-800/80' : 'bg-slate-200/50 border-slate-300/50 text-slate-600 hover:text-yellow-600 hover:border-primary-500/50 hover:bg-slate-300/80'} border backdrop-blur-sm flex items-center justify-center transition-all duration-300 active:scale-95`}

@@ -87,6 +87,7 @@ export default function Contact() {
                                 <div>
                                     <div className={`text-sm ${theme === 'dark' ? 'text-slate-500' : 'text-slate-600'}`}>Email</div>
                                     <a href="mailto:abdulqadirnasrat483@gmail.com" className={`${theme === 'dark' ? 'text-slate-300 hover:text-primary-400' : 'text-slate-700 hover:text-primary-600'} transition-colors`}>abdulqadirnasrat483@gmail.com</a>
+                                    <div className={`text-xs mt-1 ${theme === 'dark' ? 'text-slate-500' : 'text-slate-500'}`}>Response within 24 hours</div>
                                 </div>
                             </div>
                         </div>
@@ -100,6 +101,7 @@ export default function Contact() {
                                 <div>
                                     <div className={`text-sm ${theme === 'dark' ? 'text-slate-500' : 'text-slate-600'}`}>WhatsApp</div>
                                     <a href="https://wa.me/93745562728" target="_blank" rel="noopener noreferrer" className={`${theme === 'dark' ? 'text-slate-300 hover:text-green-400' : 'text-slate-700 hover:text-green-600'} transition-colors`}>+93 745 562 728</a>
+                                    <div className={`text-xs mt-1 ${theme === 'dark' ? 'text-slate-500' : 'text-slate-500'}`}>Response within 2-3 hours</div>
                                 </div>
                             </div>
                         </div>
