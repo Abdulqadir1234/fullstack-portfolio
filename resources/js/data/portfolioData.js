@@ -7,7 +7,7 @@ export const skills = [
     },
     {
         category: 'Backend',
-        items: ['Laravel', 'PHP', 'Django', 'Python', 'REST APIs', 'MySQL', 'SQLite'],
+        items: ['Laravel', 'PHP', 'Django', 'Python', 'Express.js', 'REST APIs', 'MySQL', 'SQLite'],
     },
     {
         category: 'Graphic Design',
