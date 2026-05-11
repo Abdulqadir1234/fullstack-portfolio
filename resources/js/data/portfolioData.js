@@ -3,7 +3,7 @@
 export const skills = [
     {
         category: 'Frontend',
-        items: ['React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Vue.js'],
+        items: ['React', 'Next.js', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS'],
     },
     {
         category: 'Backend',
@@ -77,7 +77,17 @@ export const projects = [
         image: '/images/projects/portfolio.png',
         technologies: ['React', 'Tailwind CSS', 'Vite'],
         github_url: 'https://github.com/Abdulqadir1234/fullstack-portfolio',
-        live_url: '#',
+        live_url: 'https://qadir-dev.vercel.app',
         order: 6,
+    },
+    {
+        id: 7,
+        title: 'SaaS Template',
+        description: 'A modern SaaS landing page template built with Next.js, React, and Tailwind CSS. Features responsive design, clean UI components, and optimized performance for SaaS product showcases.',
+        image: '/images/projects/saas-template.png',
+        technologies: ['Next.js', 'React', 'Tailwind CSS'],
+        github_url: '#',
+        live_url: 'https://saas-app-q.vercel.app',
+        order: 7,
     },
 ];

@@ -100,7 +100,7 @@ export default function Skills({ skills }) {
                                     </h3>
                                 </div>
                                 
-                                <div className="flex flex-wrap gap-2 md:gap-2.5">
+                                <div className="flex flex-wrap gap-3 md:gap-4">
                                     {group.items.map((skill, skillIndex) => (
                                         <div
                                             key={skillIndex}
